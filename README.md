@@ -138,6 +138,10 @@ Jawab :
 		group =  getgrgid(st.st_gid); //mengambil id grup dari owner lalu disimpan di tempat yang ditunjuk gruop
     		//chmod(folderawal, S_IRWXU | S_IRWXO | S_IRWXG);
     		//chmod(folderawal, 0777);
+		
+		
+- Dan jika nama owner dan group sesuai dengan yang ada di soal maka file tersebut akan didelete dan dicatat di sebuah file 
+
     		if((strcmp(pwd->pw_name, cari)==0 || strcmp(pwd->pw_name, cari2) ==0) && strcmp(group->gr_name, cari3)==0)
    		 {	 
 			remove(folderawal);
