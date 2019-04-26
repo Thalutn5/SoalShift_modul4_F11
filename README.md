@@ -18,11 +18,11 @@ Jawab :
 
         char abjad[256]="qE1~ YMUR2\"`hNIdPzi%^t@(Ao:=CQ,nx4S[7mHFye#aT6+v)DfKL$r?bkOGB>}!9_wV']jcp5JZ&Xl|\\8s;g<{3.u*W-0";
     	int i, j, panjang;
-		char input[strlen(de->d_name)];
+	  char input[strlen(de->d_name)];
 		strcpy(input, de->d_name);
 
 		if(strcmp(input, ".") != 0 && strcmp(input, "..") != 0)
-    	{
+    		{
 			panjang = strlen(input); 
 			for(i=0;i<panjang;i++)//ngubah perkarakter
 			{
@@ -40,8 +40,9 @@ Jawab :
 			strcpy(de->d_name,input);
 
 			res = (filler(buf, de->d_name, &st, 0));
-				if(res!=0) break;
-
+				if(res!=0) break
+			}
+		     
 - Untuk script encrip
 
                         char file[1000];
