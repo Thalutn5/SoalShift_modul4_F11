@@ -13,6 +13,20 @@ Perhatian: Karakter ‘/’ adalah karakter ilegal dalam penamaan file atau fold
 
 Jawab :
 
+- Untuk mengerjakan soal ini saya membuat script decrip dan enkrip
+- Untuk script decrip
+
+- Untuk script encrip
+
+- Setelah itu saya mengopaskan template yang ada di modul lalu mengganti dirpathnya menjadi
+
+- Dan saya menaruh script encrip saya pada fungsi getatrr agar bisa mengambil atribut dari hasil encripnya
+- Saya juga menaruh script encrip saya pada fungsi readdir agar bisa membuka subfolder dari suatu folder
+- Serta juga menaruh script encrip di fungsi xmp_read agar file yang dituju bisa diread
+- Sementara untuk script decrip saya menaruhnya di fungsi readdir di dalam while agar mecahin ekripsinya agar bisa dibaca
+
+
+
 # Soal2
 Semua file video yang tersimpan secara terpecah-pecah (splitted) harus secara otomatis tergabung (joined) dan diletakkan dalam folder “Videos”
 
