@@ -119,6 +119,39 @@ Jika ditemukan file dengan spesifikasi tersebut ketika membuka direktori, Atta a
 Jawab :
 
 - Untuk mengerjakan soal ini saya menambah fungs unlink dan didalam fungsi unlink saya tambahkan script encrip
+
+		static int xmp_unlink(const char *path)
+		{
+    		int res;
+		char file[1000];
+		char fpath[1000];
+			char abjad[256]="qE1~ YMUR2\"`hNIdPzi%^t@(Ao:=CQ,nx4S[7mHFye#aT6+v)DfKL$r?bkOGB>}!9_wV']jcp5JZ&Xl|\\8s;g<{3.u*W-0";
+			int i, j, panjang;
+			char input[strlen(path)];
+			strcpy(input, path);
+			panjang = strlen(input); 
+			for(i=0;i<panjang;i++)//ngubah perkarakter
+			{
+				if(input[i]=='/')
+				{input[i]='/';}
+				else{
+				for(j=0;input[i]!=abjad[j];j++)//nyari karakter yang sama di abjad
+				{}
+				j=j+17;
+				if(j>93)
+				{j=j-strlen(abjad);}
+				input[i]=abjad[j];
+				}
+			}
+			strcpy(file,input);
+		sprintf(fpath,"%s%s",dirpath,file);
+    		res = unlink(fpath);
+    		if(res == -1)
+        	return -errno;
+
+   		 return 0;
+		}
+
 - Lalu di readdir saya menambahkanscript yang akan menyaring owner chipset dan ic_controller serta group namenya rusak.
 
 		//struct stat info; //mencari informasi
