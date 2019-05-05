@@ -196,9 +196,6 @@ Pada folder YOUTUBER, setiap membuat folder permission foldernya akan otomatis m
 
 Jawab :
 
-# Soal5
-Ketika mengedit suatu file dan melakukan save, maka akan terbuat folder baru bernama Backup kemudian hasil dari save tersebut akan disimpan pada backup dengan nama namafile_[timestamp].ekstensi. Dan ketika file asli dihapus, maka akan dibuat folder bernama RecycleBin, kemudian file yang dihapus beserta semua backup dari file yang dihapus tersebut (jika ada) di zip dengan nama namafile_deleted_[timestamp].zip dan ditaruh ke dalam folder RecycleBin (file asli dan backup terhapus). Dengan format [timestamp] adalah yyyy-MM-dd_HH:mm:ss
-Jawab :
 - Pada soal ini saya menambahkan fungsi mkdir, create dan chmod
 - Dibawah ini adalah fungsi mkdir 
 
@@ -262,4 +259,133 @@ Jawab :
 		}
 
 - Dibawah ini adalah fungsi create
+
+		static int xmp_create(const char* path, mode_t mode, struct fuse_file_info* fi) {
+		int countName=0;
+		strcat(path, ".iz1");
+		for(int i=strlen(path) - 1; i >= 0; i-- ){
+		if(path[i] != '/'){
+			countName++;
+			continue;
+		}
+		break;
+		}
+	
+		int res;
+		 char fpath[1000];
+		if(strcmp(path,"/") == 0)
+		{
+			path=dirpath;
+		sprintf(fpath,"%s",path);
+		}
+		else {
+			char file[1000];
+			char abjad[256]="qE1~ YMUR2\"`hNIdPzi%^t@(Ao:=CQ,nx4S[7mHFye#aT6+v)DfKL$r?bkOGB>}!9_wV']jcp5JZ&Xl|\\8s;g<{3.u*W-0";
+			int i, j, panjang;
+			char input[strlen(path)];
+			strcpy(input, path);
+			panjang = strlen(input); 
+			for(i=0;i<panjang;i++)//ngubah perkarakter
+			{
+				if(input[i]=='/')
+				{input[i]='/';}
+				else{
+				for(j=0;input[i]!=abjad[j];j++)//nyari karakter yang sama di abjad
+				{}
+				j=j+17;
+				if(j>93)
+				{j=j-strlen(abjad);}
+				input[i]=abjad[j];
+				}
+			}
+			strcpy(file,input);
+		sprintf(fpath,"%s%s",dirpath,file);
+		}
+		char apaPath[999];
+		memset(apaPath,0,sizeof(apaPath));
+		int j,i;
+		for( i=strlen(fpath)-1-countName-8,j=0; j<9; j++,i++){
+			apaPath[j] = fpath[i];
+		}
+		printf("%s\n\n\n\n", apaPath);
+  	if (strcmp(apaPath,"@ZA>AXio/") == 0){
+
+		mode=0640;
+		res = creat(fpath, mode);
+		
+	}
+
+   	 (void) fi;
+
+    
+    
+   	 if(res == -1)
+		return -errno;
+
+    	close(res);
+
+   	 return 0;
+	  }
+
 - Dibawah ini adalah fungsi chmod
+
+		static int xmp_chmod(const char *path, mode_t mode)
+		{
+		int res;
+		char fpath[1000];
+  		char name[1000];
+		sprintf(name,"%s",path);
+		if(strlen(name)>9 && strncmp(name,"/YOUTUBER",9)==0 && strcmp(name+strlen(name)-4,".iz1")==0)
+		{
+		pid_t child1;
+		child1=fork();
+		if(child1==0){
+			execl("/usr/bin/zenity","/usr/bin/zenity","--error","--text=File ekstensi iz1 tidak boleh diubah permissionnya.","--title=Tidak bisa merubah",NULL);
+		}
+		else{
+			wait(NULL);
+		}
+		}
+		else{
+		char fpath[1000];
+		if(strcmp(path,"/") == 0)
+		{
+			path=dirpath;
+			sprintf(fpath,"%s",path);
+		}
+		else {
+				char file[1000];
+				char abjad[256]="qE1~ YMUR2\"`hNIdPzi%^t@(Ao:=CQ,nx4S[7mHFye#aT6+v)DfKL$r?bkOGB>}!9_wV']jcp5JZ&Xl|\\8s;g<{3.u*W-0";
+				int i, j, panjang;
+				char input[strlen(path)];
+				strcpy(input, path);
+				panjang = strlen(input); 
+				for(i=0;i<panjang;i++)//ngubah perkarakter
+				{
+					if(input[i]=='/')
+					{input[i]='/';}
+					else{
+					for(j=0;input[i]!=abjad[j];j++)//nyari karakter yang sama di abjad
+					{}
+					j=j+17;
+					if(j>93)
+					{j=j-strlen(abjad);}
+					input[i]=abjad[j];
+					}
+				}
+				strcpy(file,input);
+			sprintf(fpath,"%s%s",dirpath,file);
+		}
+		printf(" ini nama %d\n\n\n", fpath);
+		res = chmod(fpath, mode);
+		}
+		if (res == -1)
+		return -errno;
+
+		return 0;
+		}
+
+
+# Soal5
+Ketika mengedit suatu file dan melakukan save, maka akan terbuat folder baru bernama Backup kemudian hasil dari save tersebut akan disimpan pada backup dengan nama namafile_[timestamp].ekstensi. Dan ketika file asli dihapus, maka akan dibuat folder bernama RecycleBin, kemudian file yang dihapus beserta semua backup dari file yang dihapus tersebut (jika ada) di zip dengan nama namafile_deleted_[timestamp].zip dan ditaruh ke dalam folder RecycleBin (file asli dan backup terhapus). Dengan format [timestamp] adalah yyyy-MM-dd_HH:mm:ss
+Jawab :
