@@ -199,4 +199,67 @@ Jawab :
 # Soal5
 Ketika mengedit suatu file dan melakukan save, maka akan terbuat folder baru bernama Backup kemudian hasil dari save tersebut akan disimpan pada backup dengan nama namafile_[timestamp].ekstensi. Dan ketika file asli dihapus, maka akan dibuat folder bernama RecycleBin, kemudian file yang dihapus beserta semua backup dari file yang dihapus tersebut (jika ada) di zip dengan nama namafile_deleted_[timestamp].zip dan ditaruh ke dalam folder RecycleBin (file asli dan backup terhapus). Dengan format [timestamp] adalah yyyy-MM-dd_HH:mm:ss
 Jawab :
+- Pada soal ini saya menambahkan fungsi mkdir, create dan chmod
+- Dibawah ini adalah fungsi mkdir 
 
+		static int xmp_mkdir(const char *path, mode_t mode)
+		{
+				int countName=0;
+
+		for(int i=strlen(path) - 1; i >= 0; i-- ){
+		if(path[i] != '/'){
+			countName++;
+			continue;
+		}
+		break;
+		}
+		char fpath[1000];
+		if(strcmp(path,"/") == 0)
+		{
+			path=dirpath;
+			sprintf(fpath,"%s",path);
+		}
+		else {
+			char file[1000];
+			char abjad[256]="qE1~ YMUR2\"`hNIdPzi%^t@(Ao:=CQ,nx4S[7mHFye#aT6+v)DfKL$r?bkOGB>}!9_wV']jcp5JZ&Xl|\\8s;g<{3.u*W-0";
+			int i, j, panjang;
+			char input[strlen(path)];
+			strcpy(input, path);
+			panjang = strlen(input); 
+			for(i=0;i<panjang;i++)//ngubah perkarakter
+			{
+				if(input[i]=='/')
+				{input[i]='/';}
+				else{
+				for(j=0;input[i]!=abjad[j];j++)//nyari karakter yang sama di abjad
+				{}
+				j=j+17;
+				if(j>93)
+				{j=j-strlen(abjad);}
+				input[i]=abjad[j];
+				}
+				}
+			strcpy(file,input);
+		sprintf(fpath,"%s%s",dirpath,file);
+		}
+		int res;
+		char apaPath[999];
+		memset(apaPath,0,sizeof(apaPath));
+		int j,i;
+		for(i=strlen(fpath)-1-countName-8,j=0; j<9; j++,i++){
+			apaPath[j] = fpath[i];
+		}
+		if (strcmp(apaPath,"@ZA>AXio/") == 0){
+		
+		mode=0750;
+		res = mkdir(fpath, mode);
+		}
+	
+		if (res == -1)
+		return -errno;
+
+		return 0;
+		}
+
+- Dibawah ini adalah fungsi create
+- Dibawah ini adalah fungsi chmod
